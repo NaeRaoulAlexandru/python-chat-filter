@@ -7,7 +7,7 @@ import json
 while True:
     while True:
         print("""Hello admin, please make your choice:
-                       1 --> No existing database. Let's create one
+                       1 --> No existing database. Let's create one (Recommended for first time)
                        2 --> Existing database. Let's analyze it
                        3 --> Enter queries menu\n""")
         start = input("You chose: ")
@@ -30,13 +30,13 @@ while True:
                     elif isMade == 'n':
                          print("\nPlease open your terminal and start an empty MySQL container.")
                          print("Example command:")
-                         print("docker run --name mysql-server -e MYSQL_ROOT_PASSWORD=parola_secreta -p 3306:3306 -d mysql")
+                         print("docker run --name mysql-server -e MYSQL_ROOT_PASSWORD=secret -p 3306:3306 -d mysql")
                          print("\nAfter the container is up and running, provide the connection details below.")
                         
-                         host = input("Enter host: ")
-                         user = input("Enter user: ")
-                         password = input("Enter password: ")
-                         port = input("Enter port: ")
+                         host = input("Enter host (ex - localhost): ")
+                         user = input("Enter user (ex - root): ")
+                         password = input("Enter password (ex - secret): ")
+                         port = input("Enter port (ex - 3306): ")
                          break
                     else: print("Invalid answer")
                 print("\nConnection details saved! Now, let's create the actual database inside your container.")
@@ -67,6 +67,8 @@ while True:
                 verify_db.verifydb()
             except mysql.connector.Error:
                 print("Docker container is not opened")
+            except FileNotFoundError:
+                print("You haven't created the db yet! Select first option.")
         case '3':
             try:
                 with open("config.json", "r") as f:

@@ -46,7 +46,7 @@ def checkstatus(connexion, addr):
 
 def updatestatus(connexion, addr):
     cursor = connexion.cursor()
-    cmd_sql = "UPDATE users SET status = %s"
+    cmd_sql = "UPDATE users SET status = 1 WHERE username=%s"
     cursor.execute(cmd_sql, (addr,))
     connexion.commit()
 

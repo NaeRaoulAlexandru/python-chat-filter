@@ -4,8 +4,14 @@ import mysql.connector
 from db_scripts import  queries
 
 #CONNECTION IS KEY WORD, THATS WHY I PUT CONNEXION
-with open("config.json", "r") as f:
-    configData = json.load(f)
+
+
+
+try:
+    with open("config.json", "r") as f:
+        configData = json.load(f)
+except FileNotFoundError as err:
+    print("You didn't create the db. Use admin kit")
 
 connexion = mysql.connector.connect(
     host=configData["host"],
@@ -51,7 +57,7 @@ while True:
     while queries.checkstatus(connexion, addr[0]) == 0:
         c.send(('Support: ' + input()).encode())
         decodedMessage = c.recv(1024).decode()
-        print(decodedMessage)
+        print("Client: " + decodedMessage)
 
         #Add flag to stop the next iteration
         banned = False
@@ -69,4 +75,3 @@ while True:
         if banned: break
 
     c.close()
-

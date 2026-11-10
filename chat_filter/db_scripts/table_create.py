@@ -11,6 +11,7 @@ def createtable():
         user=configData["user"],
         password=configData["password"],
         port=configData["port"],
+        database=configData["database"]
     )
 
     cursor = connexion.cursor()

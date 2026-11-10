@@ -11,8 +11,8 @@ def createdb():
         user=configData["user"],
         password=configData["password"],
         port=configData["port"],
-        database=configData["database"]
     )
 
     cursor = connexion.cursor()
-    cursor.execute(f"CREATE DATABASE {configData['database']}")
+    database=configData["database"]
+    cursor.execute(f"CREATE DATABASE IF NOT EXISTS {configData['database']}")

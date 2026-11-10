@@ -27,7 +27,7 @@ def createtable():
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS chat_logs (
             id INT PRIMARY KEY AUTO_INCREMENT,
-            id_user INT NOT NULL REFERENCES user(id_user),
+            id_user INT NOT NULL REFERENCES users(id_user),
             log TEXT NOT NULL,
             time DATETIME DEFAULT CURRENT_TIMESTAMP
         );

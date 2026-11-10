@@ -19,29 +19,27 @@ while True:
             print("1 --> No existing database. Let's create one")
             try:
                 while True:
-                    isMade = input("Do you have your Docker container turned on with the db? Y/n\n")
+                    isMade = input("Is your MySQL Docker container currently running? (Y/n)\n")
                     if isMade == 'Y':
+                        print("\nGreat! Please provide the connection details:")
                         host=input("Enter host: ")
                         user=input("Enter user: ")
                         password=input("Enter password: ")
                         port=input("Enter port: ")
                         break
                     elif isMade == 'n':
-                         print("""Open the Docker terminal and run the command as in the ex
-                         docker run --name mysql-server -e MYSQL_ROOT_PASSWORD=parola_secreta -e MYSQL_DATABASE=activitati -p 3306:3306 -d mysql
-                         
-                         You can change these parameters but remember them! 
-                         host="localhost", user="root", password="parola_secreta",  port="3306"\n
-                         """)
-
-                         print("Please provide how you entered the parameters")
+                         print("\nPlease open your terminal and start an empty MySQL container.")
+                         print("Example command:")
+                         print("docker run --name mysql-server -e MYSQL_ROOT_PASSWORD=parola_secreta -p 3306:3306 -d mysql")
+                         print("\nAfter the container is up and running, provide the connection details below.")
+                        
                          host = input("Enter host: ")
                          user = input("Enter user: ")
                          password = input("Enter password: ")
                          port = input("Enter port: ")
                          break
                     else: print("Invalid answer")
-                print("Now that we have our Docker container configured. Lets create our database")
+                print("\nConnection details saved! Now, let's create the actual database inside your container.")
                 nameDB = input("Enter your schema (database) name: ")
 
                 #SAVE TO USE IN OTHER FILES

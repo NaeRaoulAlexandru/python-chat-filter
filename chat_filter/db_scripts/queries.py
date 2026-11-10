@@ -95,6 +95,6 @@ def insertlogs(connexion, decodedMessage, addr):
               INSERT INTO chat_logs (id_user, log) 
               VALUES ((SELECT id_user FROM users WHERE username = %s), %s)
                  """
-    cursor.execute(cmd_sql, (decodedMessage,))
+    cursor.execute(cmd_sql, (addr, decodedMessage))
     connexion.commit()
     print(f"Logs have been updated for {addr}")
